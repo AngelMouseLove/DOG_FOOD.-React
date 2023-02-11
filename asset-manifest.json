@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/DOG_FOOD.-React/static/css/main.3bcaa504.css",
-    "main.js": "/DOG_FOOD.-React/static/js/main.e71f9db4.js",
-    "static/media/logo.svg": "/DOG_FOOD.-React/static/media/logo.4f9d699de55eb25e196ecc4c87a15a5e.svg",
-    "static/media/instagram.svg": "/DOG_FOOD.-React/static/media/instagram.54cbf40d1b69370b6a2ec029eefc269c.svg",
-    "static/media/vk.svg": "/DOG_FOOD.-React/static/media/vk.5a6b12bf142f67e2138c1e6c69952975.svg",
-    "static/media/viber.svg": "/DOG_FOOD.-React/static/media/viber.b4234cd18a8ffefb8ebb172506996cea.svg",
-    "static/media/whatsapp.svg": "/DOG_FOOD.-React/static/media/whatsapp.51cbd71440eaa90946070b8848c12129.svg",
-    "static/media/save.svg": "/DOG_FOOD.-React/static/media/save.2cac343e423ec8890adc4d542c099c91.svg",
-    "static/media/saveFill.svg": "/DOG_FOOD.-React/static/media/saveFill.c173b1c622d00b3becafdebd8ca22143.svg",
-    "static/media/ic-close-input.svg": "/DOG_FOOD.-React/static/media/ic-close-input.54db44869b83261dae0b721cf5826a4b.svg",
-    "index.html": "/DOG_FOOD.-React/index.html",
-    "static/media/ic-search.svg": "/DOG_FOOD.-React/static/media/ic-search.9da1e3f9e0d0d0b38f3c1ac2041e5f49.svg",
-    "static/media/telegram.svg": "/DOG_FOOD.-React/static/media/telegram.95a5ca8a1ae0a13c18da2bca3f249bf5.svg",
-    "main.3bcaa504.css.map": "/DOG_FOOD.-React/static/css/main.3bcaa504.css.map",
-    "main.e71f9db4.js.map": "/DOG_FOOD.-React/static/js/main.e71f9db4.js.map"
+    "main.css": "/dog-food/static/css/main.3bcaa504.css",
+    "main.js": "/dog-food/static/js/main.34b32265.js",
+    "static/media/logo.svg": "/dog-food/static/media/logo.4f9d699de55eb25e196ecc4c87a15a5e.svg",
+    "static/media/instagram.svg": "/dog-food/static/media/instagram.54cbf40d1b69370b6a2ec029eefc269c.svg",
+    "static/media/vk.svg": "/dog-food/static/media/vk.5a6b12bf142f67e2138c1e6c69952975.svg",
+    "static/media/viber.svg": "/dog-food/static/media/viber.b4234cd18a8ffefb8ebb172506996cea.svg",
+    "static/media/whatsapp.svg": "/dog-food/static/media/whatsapp.51cbd71440eaa90946070b8848c12129.svg",
+    "static/media/save.svg": "/dog-food/static/media/save.2cac343e423ec8890adc4d542c099c91.svg",
+    "static/media/saveFill.svg": "/dog-food/static/media/saveFill.c173b1c622d00b3becafdebd8ca22143.svg",
+    "static/media/ic-close-input.svg": "/dog-food/static/media/ic-close-input.54db44869b83261dae0b721cf5826a4b.svg",
+    "static/media/ic-search.svg": "/dog-food/static/media/ic-search.9da1e3f9e0d0d0b38f3c1ac2041e5f49.svg",
+    "index.html": "/dog-food/index.html",
+    "static/media/telegram.svg": "/dog-food/static/media/telegram.95a5ca8a1ae0a13c18da2bca3f249bf5.svg",
+    "main.3bcaa504.css.map": "/dog-food/static/css/main.3bcaa504.css.map",
+    "main.34b32265.js.map": "/dog-food/static/js/main.34b32265.js.map"
   },
   "entrypoints": [
     "static/css/main.3bcaa504.css",
-    "static/js/main.e71f9db4.js"
+    "static/js/main.34b32265.js"
   ]
 }
