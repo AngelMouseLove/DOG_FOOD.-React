@@ -33,7 +33,7 @@ function App() {
   function handleProductLike(product) {
     const isLiked = product.likes.some(id => id === currentUser._id) //ищем в массиве лайков id текущего пользователя;
     api.changeLikeProductStatus(product._id, !isLiked).then((newCard) => { // в зависимсоти от того есть лайки или нет отправляем запрос PUT или DELETE
-      const newCards = cards.map((c) => { console.log('Карточка в переборе', c); console.log('Карточка в c сервера', newCard); return c._id === newCard._id ? newCard : c });
+      const newCards = cards.map((c) => { return c._id === newCard._id ? newCard : c });
       setCards(newCards);
     });
   }
