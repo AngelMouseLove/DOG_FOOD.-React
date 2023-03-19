@@ -8,6 +8,7 @@ html {
 }
 body {
 	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
+	display: block;
 }
 
 .container {

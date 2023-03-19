@@ -88,7 +88,7 @@
 
 .card__sticky_type_top-right {
 	top: 0;
-	right: 0;
+	right: -155px;
 }
 
 .card__favorite {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../Footer/footer';
 import Header from '../Header/header';
 import Logo from '../Logo/logo';
@@ -7,17 +7,24 @@ import Sort from '../Sort/sort';
 import CatalogPage from '../Pages/CatalogPage';
 import ProductPage from '../Pages/ProductPage';
 import './index.css';
-//import data from '../../assets/data.json';
 import SeachInfo from '../SeachInfo';
 import api from '../../Api';
 import useDebounce from '../../useDebounce';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
+import Modal from '../Modal/Modal';
+import RegistrationForm from '../Forms/Registration/RegistrationForm';
+import AuthorizationForm from '../Forms/Authorization/AuthorizationForm'
+import { UserContext } from '../../UserContext';
+import { AUTH_TOKEN_KEY } from '../../constants';
+import AuthInfo from '../AuthInfo/AuthInfo';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [cards, setCards] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [modalRegActive, setModalRegActive] = useState(false);
+  const [modalAuthActive, setModalAuthActive] = useState(false);
   const debounceValue = useDebounce(searchQuery, 500);
 
   const handleRequest = async () => {
@@ -28,6 +35,7 @@ function App() {
       const filterCards = await api.search(debounceValue);
       setCards(filterCards);
     }
+    
   }
 
   function handleProductLike(product) {
@@ -39,16 +47,22 @@ function App() {
   }
 
   useEffect(() => {
-    handleRequest()
-  }, [debounceValue])
-
-  useEffect(() => {
-    Promise.all([api.getProductList(), api.getUserInfo()])
-      .then(([productData, userData]) => {
-        setCurrentUser(userData);
-        setCards(productData.products);
-      });
-  }, []);
+    console.log(currentUser)
+    let authToken = localStorage.getItem(AUTH_TOKEN_KEY)
+    if (authToken) {
+      if (!currentUser) {
+        api.getUserInfo()
+        .then((userData) => {
+          setCurrentUser(userData);
+        });
+      } else {
+           api.getProductList()
+            .then((productData) => {
+              setCards(productData.products);
+             });
+      }
+    }
+  },[currentUser]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -59,6 +73,14 @@ function App() {
     setSearchQuery(inputValue);
   }
 
+  const handleOnClickReg = () => {
+    setModalRegActive(true)
+  }
+
+  const handleOnClickAuth = () => {
+    setModalAuthActive(true)
+  }
+
   function handleUpdateUser(userUpdate) {
     api.setUserInfo(userUpdate).then((newUserData) => {
       setCurrentUser(newUserData);
@@ -67,25 +89,29 @@ function App() {
 
   return (
     <>
-      <Header user={currentUser} onUpdateUser={handleUpdateUser}>
+    <UserContext.Provider value={{currentUser, setCurrentUser}}>
+    <Header>
         <>
           <Logo className="logo logo_place_header" href="/" />
           <Search onSubmit={handleFormSubmit} onInput={handleInputChange} />
+          <AuthInfo onReg={handleOnClickReg} onAuth={handleOnClickAuth}/>
         </>
       </Header>
       <main className='content container'>
         <SeachInfo searchCount={cards.length} searchText={debounceValue} />
         <Sort />
+        {currentUser == null && <h1>Авторизуйтесь</h1>}
         <div className='content__cards'>
           <Routes>
             <Route index element={
-              <CatalogPage
+              currentUser &&
+                <CatalogPage
                 currentUser={currentUser}
                 searchQuery={searchQuery}
                 cards={cards}
                 handleProductLike={handleProductLike}
               />
-            }
+              }
             />
             <Route path="/product/:id" element={
               <ProductPage
@@ -96,8 +122,16 @@ function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+        <Modal active={modalRegActive} setActive={setModalRegActive}>
+          <RegistrationForm setActive={setModalRegActive}/> 
+        </Modal>
+
+        <Modal active={modalAuthActive} setActive={setModalAuthActive}>
+            <AuthorizationForm setActive={setModalAuthActive} />
+        </Modal>
       </main>
       <Footer />
+    </UserContext.Provider>
     </>
   )
 }

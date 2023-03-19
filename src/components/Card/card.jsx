@@ -11,7 +11,6 @@ const Card = (props) => {
 	const { product, onProductLike, currentUser, name, price, discount, wight, description, pictures, tags } = props;
 
 	const discount_price = Math.round(price - price * discount / 100);
-	console.log(props)
 	const isLiked = product.likes.some(i => i === currentUser._id);
 
 	function handleLikeClick() {

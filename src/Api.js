@@ -3,10 +3,9 @@ const onResponce = (res) => {
 };
 
 class Api {
-    constructor({ baseUrl, token }) {
-        this._token = `Bearer ${token}`;
+    constructor({ baseUrl }) {
         const headers = {
-            authorization: this._token,
+            authorization: this.getToken(),
             "Content-Type": "application/json"
         };
         this._requestInit = {
@@ -15,6 +14,9 @@ class Api {
         this._baseUrl = baseUrl;
     }
 
+    getToken() {
+        return localStorage.getItem('my-sber-token');
+    }
 
     getProductList() {
         return fetch(`${this._baseUrl}/products`, this._requestInit).then(onResponce);
@@ -40,17 +42,36 @@ class Api {
         return fetch(`${this._baseUrl}/products/likes/${productID}`, {
             method: like ? "PUT" : "DELETE",
             headers: {
-                authorization: this._token,
+                authorization: this.getToken(),
                 "Content-Type": "application/json",
             },
         }).then(onResponce);
     }
 
+    registration(userInfo) {
+        return fetch(`${this._baseUrl}/signup`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userInfo)
+        })
+    }
+
+    authorization(loginPassPair) {
+        return fetch(`${this._baseUrl}/signin`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginPassPair)
+        }).then(onResponce)
+    }
+
 }
 
 const config = {
-    baseUrl: 'https://api.react-learning.ru',
-    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2UzZmUwMDU5Yjk4YjAzOGY3N2IzYmEiLCJncm91cCI6Imdyb3VwLTEwIiwiaWF0IjoxNjc1ODg3NTU5LCJleHAiOjE3MDc0MjM1NTl9.x1FR1Mk25UaVZzRK3DcnXQ-kOhiPP4nMuXzS8pMwrVg'
+    baseUrl: 'https://api.react-learning.ru'
 }
 
 const api = new Api(config)

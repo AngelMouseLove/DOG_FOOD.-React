@@ -12,12 +12,9 @@ const ProductPage = ({ currentUser, handleProductLike }) => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    console.log(id)
-
     useEffect(() => {
         api.getProductById(id)
             .then((productData) => {
-                console.log(productData)
                 setProduct(productData);
             })
             .catch(err => setErrorState(true))
