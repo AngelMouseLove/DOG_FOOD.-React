@@ -1,0 +1,43 @@
+.reviews {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .review {
+    margin-bottom: 20px;
+  }
+  
+  .author {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .date, .rating {
+    font-size: 17px;
+    color: #999;
+    margin-bottom: 5px;
+  }
+  
+  .text {
+    font-size: 14px;
+  }
+  
+  .add-review input,
+  .add-review select,
+  .add-review textarea {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .add-review button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .add-review button:hover {
+    background-color: #0062cc;
+  }

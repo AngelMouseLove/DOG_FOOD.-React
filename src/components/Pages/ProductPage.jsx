@@ -23,7 +23,7 @@ const ProductPage = ({ currentUser, handleProductLike }) => {
     return (
         <>
             <a className="button-back" href="#" onClick={() => navigate(-1)}>Назад</a>
-            {product.length === 0 || errorState ? null : <Card product={product} {...product} currentUser={currentUser} onProductLike={handleProductLike} />}
+            {product.length === 0 || errorState ? null : <Card product={product} {...product} currentUser={currentUser} onProductLike={handleProductLike} oneProductMode={true} />}
             {errorState && <NotFound />}
         </>
     );

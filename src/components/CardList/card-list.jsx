@@ -8,7 +8,7 @@ const CardList = ({ goods, onProductLike, currentUser }) => {
 		<div className='cards'>
 			{
 				goods.map((item, index) => (
-					<Card key={index} product={item} {...item} onProductLike={onProductLike} currentUser={currentUser} />
+					<Card key={index} product={item} {...item} onProductLike={onProductLike} currentUser={currentUser} oneProductMode={false} />
 				))
 			}
 		</div>

@@ -3,15 +3,21 @@ import cn from 'classnames';
 import "./index.css";
 import save from "./save.svg";
 import saveFill from "./saveFill.svg";
+import commentsImg from "../../assets/images/comments.png"
 import { Link } from 'react-router-dom';
+import Comments from '../Comments/Comments';
+import { useContext } from 'react';
+import { UserContext } from '../../UserContext';
 
 
 const Card = (props) => {
 
-	const { product, onProductLike, currentUser, name, price, discount, wight, description, pictures, tags } = props;
+	const { product, onProductLike, name, price, discount, wight, description, pictures, tags, oneProductMode } = props;
 
+	const {currentUser} = useContext(UserContext);
+	
 	const discount_price = Math.round(price - price * discount / 100);
-	const isLiked = product.likes.some(i => i === currentUser._id);
+	const isLiked = currentUser ? product.likes.some(i => i === currentUser._id): false;
 
 	function handleLikeClick() {
 		onProductLike(product);
@@ -45,9 +51,19 @@ const Card = (props) => {
 				</div>
 			</Link>
 
+			<div className="action_area">
 			<a href="#" className="card__cart btn btn_type_primary">
 				В корзину
 			</a>
+			{
+				!oneProductMode && 
+					<Link to={`/product/${product._id}`} className="card__cart btn btn_type_primary">
+					{product.reviews.length} <img src={commentsImg} aria-hidden="true" />
+					</Link>
+			}
+			</div>
+
+			{oneProductMode && <Comments productId={product._id} />}
 		</div>
 	);
 };

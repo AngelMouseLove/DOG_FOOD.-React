@@ -15,7 +15,7 @@ class Api {
     }
 
     getToken() {
-        return localStorage.getItem('my-sber-token');
+        return "Bearer " + localStorage.getItem('my-sber-token');
     }
 
     getProductList() {
@@ -26,8 +26,16 @@ class Api {
         return fetch(`${this._baseUrl}/products/${id}`, this._requestInit).then(onResponce);
     }
 
+    getReviewsByProduct(id) {
+        return fetch(`${this._baseUrl}/products/review/${id}`, this._requestInit).then(onResponce);
+    }
+
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, this._requestInit).then(onResponce);
+    }
+
+    getUsers() {
+        return fetch(`${this._baseUrl}/users`, this._requestInit).then(onResponce);
     }
 
     search(searchQuery) {
@@ -46,6 +54,17 @@ class Api {
                 "Content-Type": "application/json",
             },
         }).then(onResponce);
+    }
+
+    addCommentToProduct(productID, body) {
+        return fetch(`${this._baseUrl}/products/review/${productID}`, {
+            method: "POST",
+            headers: {
+                authorization: this.getToken(),
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body)
+        })
     }
 
     registration(userInfo) {
